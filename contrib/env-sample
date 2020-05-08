@@ -2,9 +2,11 @@ SECRET_KEY=THIS_IS_NOT_A_GOOD_SECRET
 DEBUG=True
 ALLOWED_HOSTS=127.0.0.1, .localhost, .herokuapp.com
 DATABASE_URL=postgres://postgres:postgres@localhost/testdb
-# CONFIGURATION AWS
+# Configuration AWS
 AWS_ACCESS_KEY_ID=
 AWS_SECRET_ACCESS_KEY=
 AWS_STORAGE_BUCKET_NAME=
-# DJANGO DEBUG TOOLBAR
+# Django Debug Toolbar
 INTERNAL_IPS=127.0.0.1
+
+SENTRY_DNS =

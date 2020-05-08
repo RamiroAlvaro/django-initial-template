@@ -13,10 +13,13 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 from functools import partial
 
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
 from decouple import config, Csv
 from dj_database_url import parse as db_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -175,3 +178,16 @@ if AWS_ACCESS_KEY_ID:  # pragma: no cover
 
     INSTALLED_APPS.append('s3_folder_storage')
     INSTALLED_APPS.append('storages')
+
+SENTRY_DNS = config('SENTRY_DNS', default=None)
+
+if SENTRY_DNS:  # pragma: no cover
+
+    sentry_sdk.init(
+        dsn=SENTRY_DNS,
+        integrations=[DjangoIntegration()],
+
+        # If you wish to associate users to errors (assuming you are using
+        # django.contrib.auth) you may enable sending PII data.
+        send_default_pii=True
+    )
